@@ -1,4 +1,5 @@
 <script setup>
+import { useToast } from "primevue/usetoast";
 const products = [
   { code: 1, name: "iPhone 13", category: "Electronics", quantity: 100 },
   {
@@ -46,6 +47,11 @@ const checked = ref(false);
 
 const date = ref(new Date());
 const ingredient = ref(null);
+
+const toast = useToast();
+const showMessage = (severity, summary, detail) => {
+  toast.add({ severity, summary, detail }); //, life: 3000
+};
 </script>
 
 <template>
@@ -56,15 +62,15 @@ const ingredient = ref(null);
       Tailwind CSS + PrimeVue + SHADCNUI
     </h1>
 
-    <h2 class="mt-6 text-xl font-medium">Buttons</h2>
+    <h2 class="mt-6 mb-2 text-xl font-medium">Buttons</h2>
     <section class="flex flex-row gap-3">
       <Button label="Primary" rounded></Button>
       <Button label="Secondary" rounded severity="secondary"></Button>
       <Button label="Danger" rounded severity="danger"></Button>
-      <Button label="Link" rounded severity="link"></Button>
+      <Button label="Link" rounded link></Button>
     </section>
 
-    <h2 class="mt-6 text-xl font-medium">Input</h2>
+    <h2 class="mt-6 mb-2 text-xl font-medium">Input</h2>
     <section class="flex flex-row gap-3 mb-6">
       <InputText type="text" v-model="value" />
       <div class="flex items-center">
@@ -125,7 +131,7 @@ const ingredient = ref(null);
       <Textarea v-model="value" rows="5" cols="30"></Textarea>
     </section>
 
-    <h2 class="mt-6 text-xl font-medium">Datatable</h2>
+    <h2 class="mt-6 mb-2 text-xl font-medium">Datatable</h2>
     <section>
       <DataTable
         v-model:selection="selectedProduct"
@@ -139,6 +145,48 @@ const ingredient = ref(null);
         <Column field="category" sortable header="Category"></Column>
         <Column field="quantity" sortable header="Quantity"></Column>
       </DataTable>
+    </section>
+    <h2 class="mt-6 mb-2 text-xl font-medium">Container</h2>
+    <section>
+      <Card>
+        <template #title> Simple Card </template>
+        <template #subtitle>This is a simlple Card</template>
+        <template #content>
+          <p class="m-0">
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore
+            sed consequuntur error repudiandae numquam deserunt quisquam
+            repellat libero asperiores earum nam nobis, culpa ratione quam
+            perferendis esse, cupiditate neque quas!
+          </p>
+        </template>
+      </Card>
+    </section>
+    <h2 class="mt-6 mb-2 text-xl font-medium">Overlay</h2>
+    <section>
+      <Toast position="bottom-right"></Toast>
+      <div class="flex flex-row gap-3">
+        <Button
+          label="Show Message"
+          @click="
+            showMessage(
+              'info',
+              'Scheduled: Catch up',
+              'Friday, February 10, 2023 at 5:57 PM'
+            )
+          "
+        ></Button>
+        <Button
+          label="Show Error"
+          @click="
+            showMessage('error', 'Error', 'Something went wrong oh noooo!')
+          "
+        ></Button>
+      </div>
+      <div class="mt-3">Not sure if we need static messages:</div>
+      <Message severity="success"> Success Message Content </Message>
+      <Message severity="info"> Info Message Content </Message>
+      <Message severity="warn"> Warning Message Content </Message>
+      <Message severity="error"> Error Message Content </Message>
     </section>
   </main>
 </template>

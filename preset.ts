@@ -20,18 +20,19 @@ const MyCustomPreset: PrimeVuePTOptions = {
         class: [
           "inline-flex items-center justify-center whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50",
           {
-            "bg-primary text-primary-foreground hover:bg-primary/90":
+            "bg-primary text-primary-foreground hover:bg-primary/80":
               !props.link &&
               props.severity === null &&
               !props.text &&
               !props.outlined &&
               !props.plain,
-            "text-primary underline-offset-4 hover:underline": props.link,
+            "text-primary decoration-2 underline-offset-4 hover:underline":
+              props.link,
           },
           {
-            "bg-secondary text-secondary-foreground hover:bg-secondary/80":
+            "bg-secondary text-secondary-foreground hover:bg-secondary/50":
               props.severity === "secondary",
-            "bg-destructive text-destructive-foreground hover:bg-destructive/90":
+            "bg-destructive text-destructive-foreground hover:bg-destructive/80":
               props.severity === "danger",
             "hover:bg-accent hover:text-accent-foreground":
               props.severity === "ghost",
@@ -448,7 +449,6 @@ const MyCustomPreset: PrimeVuePTOptions = {
         "fixed w-full h-full t-0 l-0 bg-gray-100/40",
         "transition duration-200",
         "absolute flex items-center justify-center z-2",
-        "dark:bg-gray-950/40", // Dark Mode
       ],
     },
     loadingIcon: "w-8 h-8",
@@ -749,7 +749,6 @@ const MyCustomPreset: PrimeVuePTOptions = {
             : "bg-secondary text-foreground"
           : "",
         "transition duration-200",
-        "dark:text-white/80 dark:focus:outline dark:focus:outline-[0.15rem] dark:focus:outline-blue-300 dark:focus:outline-offset-[-0.15rem]", // Dark Mode
         {
           "cursor-pointer": context.selectable,
           "hover:bg-secondary": context.selectable && !context.selected, // Hover
@@ -781,10 +780,104 @@ const MyCustomPreset: PrimeVuePTOptions = {
     //   ],
     // },
     //rowgrouptogglericon: "inline-block w-4 h-4",
-    resizeHelper: "absolute hidden w-px z-10 bg-blue-500 dark:bg-blue-300",
+    resizeHelper: "absolute hidden w-px z-10 bg-primary",
+  },
+  card: {
+    root: {
+      class: [
+        "bg-background text-foreground rounded-md border shadow-sm", // Background, text color, box shadow, and border radius.
+      ],
+    },
+    body: ["p-5"], // Padding.
+    title: ["text-2xl font-bold mb-2"], // Font size, font weight, and margin bottom.
+    subtitle: {
+      class: [
+        "font-normal mb-2 text-muted-foreground", // Font weight, margin bottom, and text color.
+      ],
+    },
+    content: ["py-5"], // Vertical padding.
+    footer: ["pt-5"], // Top padding.
+  },
+  toast: {
+    root: {
+      class: ["w-96"],
+    },
+    container: ({ props }) => ({
+      class: [
+        "mt-1 group pointer-events-auto relative flex w-full items-center justify-between space-x-4 overflow-hidden rounded-md border p-6 pr-8 shadow-lg transition-all",
+        {
+          "border bg-background text-foreground":
+            props.message?.severity == "info" ||
+            props.message?.severity == "success" ||
+            props.message?.severity == "warn",
+          "destructive group border-destructive bg-destructive text-destructive-foreground":
+            props.message?.severity == "error",
+        },
+      ],
+    }),
+    content: "",
+    icon: {
+      class: "hidden",
+    },
+    text: "grid gap-1",
+    summary: "text-sm font-semibold",
+    detail: "text-sm opacity-90",
+    closeButton: {
+      class: [
+        "focus:ring-foreground/50 absolute right-2 top-2 rounded-md p-1 text-foreground/50 opacity-0 transition-opacity hover:text-foreground focus:opacity-100 focus:outline-none focus:ring-2 group-hover:opacity-100 group-[.destructive]:text-red-300 group-[.destructive]:hover:text-red-50 group-[.destructive]:focus:ring-red-400 group-[.destructive]:focus:ring-offset-red-600",
+      ],
+    },
+    transition: {
+      enterFromClass: "opacity-0 translate-x-0 translate-y-2/4 translate-z-0",
+      enterActiveClass: "transition-transform transition-opacity duration-300",
+      leaveFromClass: "translate-x-0",
+      leaveActiveClass: "transition-all duration-200 ease-in",
+      leaveToClass: "translate-x-full opacity-0 mb-0 overflow-hidden",
+    },
+  },
+  message: {
+    root: ({ props }) => ({
+      class: [
+        "mt-1 group pointer-events-auto relative flex w-full items-center justify-between space-x-4 overflow-hidden rounded-md border p-6 pr-8 shadow-lg transition-all",
+        {
+          "border bg-background text-foreground":
+            props.severity == "info" ||
+            props.severity == "success" ||
+            props.severity == "warn",
+          "destructive group border-destructive bg-destructive text-destructive-foreground":
+            props.severity == "error",
+        },
+      ],
+    }),
+    wrapper: "flex flex-row gap-3",
+    icon: {
+      class: ["w-6 h-6", "text-lg mr-2"],
+    },
+    text: "",
+    //summary: "text-sm font-semibold",
+    //detail: "text-sm opacity-90",
+    closeButton: {
+      class: [
+        "focus:ring-foreground/50 absolute right-2 top-2 rounded-md p-1 text-foreground/50 opacity-0 transition-opacity hover:text-foreground focus:opacity-100 focus:outline-none focus:ring-2 group-hover:opacity-100 group-[.destructive]:text-red-300 group-[.destructive]:hover:text-red-50 group-[.destructive]:focus:ring-red-400 group-[.destructive]:focus:ring-offset-red-600",
+      ],
+    },
+    // button: {
+    //   class: [
+    //     "w-8 h-8 rounded-full bg-transparent transition duration-200 ease-in-out",
+    //     "ml-auto overflow-hidden relative",
+    //     "flex items-center justify-center",
+    //     "hover:bg-white/30",
+    //   ],
+    // },
+    transition: {
+      enterFromClass: "opacity-0 translate-x-0 translate-y-2/4 translate-z-0",
+      enterActiveClass: "transition-transform transition-opacity duration-300",
+      leaveFromClass: "translate-x-0",
+      leaveActiveClass: "transition-all duration-200 ease-in",
+      leaveToClass: "translate-x-full opacity-0 mb-0 overflow-hidden",
+    },
   },
 };
 
 //export default DefaultPreset;
-
 export default { ...DefaultPreset, ...MyCustomPreset };
