@@ -357,7 +357,7 @@ const MyCustomPreset: PrimeVuePTOptions = {
   slider: {
     root: ({ props }) => ({
       class: [
-        "relative flex w-full h-2 grow touch-none select-none rounded-full items-center bg-secondary",
+        "relative flex w-full h-2 grow cursor-pointer rounded-full items-center bg-secondary",
         {
           "h-1 w-56": props.orientation == "horizontal",
           "w-1 h-56": props.orientation == "vertical",
@@ -370,8 +370,7 @@ const MyCustomPreset: PrimeVuePTOptions = {
     }),
     range: ({ props }) => ({
       class: [
-        "bg-primary rounded-full",
-        "block absolute",
+        "block absolute bg-primary rounded-full",
         {
           "top-0 left-0 h-full": props.orientation == "horizontal",
           "bottom-0 left-0 w-full": props.orientation == "vertical",
@@ -437,7 +436,7 @@ const MyCustomPreset: PrimeVuePTOptions = {
     icon: ({ props }) => ({
       class: [
         "transform rounded-full",
-        "block w-3 h-3 transition duration-200 bg-primary dark:bg-gray-900",
+        "block w-3 h-3 transition duration-200 bg-primary",
         {
           "backface-hidden scale-10 invisible":
             props.value !== props.modelValue,
@@ -1016,5 +1015,8 @@ const MyCustomPreset: PrimeVuePTOptions = {
   },
 };
 
+//export default MyCustomPreset;
+
 //export default DefaultPreset;
+
 export default { ...DefaultPreset, ...MyCustomPreset };

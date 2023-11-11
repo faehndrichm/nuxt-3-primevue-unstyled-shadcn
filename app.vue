@@ -179,14 +179,14 @@ const visible = ref(false);
     <h2 class="mt-6 mb-2 text-xl font-medium">Container</h2>
     <section>
       <Card>
-        <template #title> Simple Card </template>
-        <template #subtitle>This is a simple Card</template>
+        <template #title>Explore the Infinite Cosmos</template>
+        <template #subtitle>Unveiling the Wonders Beyond Our World</template>
         <template #content>
           <p class="m-0">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore
-            sed consequuntur error repudiandae numquam deserunt quisquam
-            repellat libero asperiores earum nam nobis, culpa ratione quam
-            perferendis esse, cupiditate neque quas!
+            Embark on a journey of cosmic discovery as we delve into the
+            mysteries that lie beyond our terrestrial borders. From the
+            mesmerizing dance of distant galaxies to the enigmatic realms of
+            black holes, our exploration of the cosmos knows no bounds.
           </p>
         </template>
       </Card>

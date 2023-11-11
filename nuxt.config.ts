@@ -11,7 +11,31 @@ export default defineNuxtConfig({
       from: path.resolve(__dirname, "./preset.ts"),
     },
     components: {
-      exclude: ["Editor", "Chart"],
+      include: [
+        "Calendar",
+        "Card",
+        "Checkbox",
+        "Button",
+        "Datatable",
+        "Column",
+        "Dialog",
+        "Dropdown",
+        "Message",
+        "InputSwitch",
+        "InputText",
+        "RadioButton",
+        "Slider",
+        "Skeleton",
+        "Textarea",
+        "Toast",
+      ],
+      //exclude: ["Editor", "Chart"],
+    },
+    directives: {
+      include: [],
+    },
+    composables: {
+      include: [],
     },
   },
   googleFonts: {
