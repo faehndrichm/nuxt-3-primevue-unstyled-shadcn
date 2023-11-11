@@ -14,6 +14,7 @@ export default defineNuxtConfig({
       include: [
         "Calendar",
         "Card",
+        "Chart",
         "Checkbox",
         "Button",
         "Datatable",

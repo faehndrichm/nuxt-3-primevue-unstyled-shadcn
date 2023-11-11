@@ -72,6 +72,92 @@ const showMessage = (severity: any, summary: any, detail: any) => {
 };
 
 const visible = ref(false);
+const chartData = ref();
+const chartOptions = ref();
+
+const setChartData = () => {
+  const documentStyle = getComputedStyle(document.documentElement);
+
+  return {
+    labels: [
+      "Jan",
+      "Feb",
+      "Mar",
+      "Apr",
+      "May",
+      "Jun",
+      "Jul",
+      "Aug",
+      "Sep",
+      "Oct",
+      "Nov",
+      "Dec",
+    ],
+    datasets: [
+      {
+        label: "Sales",
+        backgroundColor: "#ADFA1D",
+        borderColor: "#ADFA1D",
+        data: [65, 59, 80, 81, 56, 55, 40, 54, 25, 73, 73, 33],
+      },
+    ],
+  };
+};
+const setChartOptions = () => {
+  const documentStyle = getComputedStyle(document.documentElement);
+  const textColor = `hsl(${documentStyle.getPropertyValue("--foreground")})`;
+  const textColorSecondary = `hsl(${documentStyle.getPropertyValue(
+    "--muted-foreground"
+  )})`;
+  console.log(textColor);
+  console.log(textColorSecondary);
+  return {
+    borderRadius: 4,
+    maintainAspectRatio: false,
+    aspectRatio: 0.8,
+    plugins: {
+      legend: {
+        display: false,
+        labels: {
+          color: textColor,
+        },
+      },
+    },
+    scales: {
+      x: {
+        ticks: {
+          color: textColorSecondary,
+          font: {
+            weight: 500,
+          },
+        },
+        grid: {
+          display: false,
+          drawBorder: false,
+        },
+        border: {
+          display: false,
+        },
+      },
+      y: {
+        ticks: {
+          color: textColorSecondary,
+        },
+        grid: {
+          drawBorder: false,
+          display: false,
+        },
+        border: {
+          display: false,
+        },
+      },
+    },
+  };
+};
+onMounted(() => {
+  chartData.value = setChartData();
+  chartOptions.value = setChartOptions();
+});
 </script>
 
 <template>
@@ -267,6 +353,26 @@ const visible = ref(false);
           <Button rounded label="Save changes" @click="visible = false" />
         </template>
       </Dialog>
+    </section>
+    <h2 class="mt-6 mb-2 text-xl font-medium">Chart.JS</h2>
+    <section>
+      <Card>
+        <template #header>
+          <h3
+            class="mx-6 mt-6 text-base font-semibold leading-none tracking-tight"
+          >
+            Overview
+          </h3>
+        </template>
+        <template #content>
+          <Chart
+            type="bar"
+            :data="chartData"
+            :options="chartOptions"
+            class="h-72"
+          />
+        </template>
+      </Card>
     </section>
   </main>
 </template>
