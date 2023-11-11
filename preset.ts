@@ -784,7 +784,7 @@ const MyCustomPreset: PrimeVuePTOptions = {
   card: {
     root: {
       class: [
-        "bg-background text-foreground rounded-md border shadow-sm", // Background, text color, box shadow, and border radius.
+        "rounded-lg border bg-card text-card-foreground shadow-sm", // Background, text color, box shadow, and border radius.
       ],
     },
     body: ["p-5"], // Padding.
@@ -890,8 +890,7 @@ const MyCustomPreset: PrimeVuePTOptions = {
     header: {
       class: [
         "flex items-start justify-between shrink-0",
-        "bg-white text-gray-800 border-t-0  rounded-tl-lg rounded-tr-lg",
-        "dark:bg-gray-900  dark:text-white/80",
+        "border-t-0  rounded-tl-lg rounded-tr-lg",
       ],
     },
     headerTitle: {
@@ -902,7 +901,7 @@ const MyCustomPreset: PrimeVuePTOptions = {
     },
     closeButton: {
       class: [
-        "absolute  right-4 top-4 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none ",
+        "absolute right-4 top-4 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none ",
       ],
     },
     closeButtonIcon: {
@@ -921,8 +920,7 @@ const MyCustomPreset: PrimeVuePTOptions = {
     footer: {
       class: [
         "flex gap-2 shrink-0 justify-end align-center",
-        "border-t-0 bg-white text-gray-700 text-right rounded-b-lg",
-        "dark:bg-gray-900  dark:text-white/80",
+        "border-t-0 text-right rounded-b-lg",
       ],
     },
     mask: ({ props }) => ({
@@ -978,6 +976,19 @@ const MyCustomPreset: PrimeVuePTOptions = {
             leaveToClass: "opacity-0 scale-75",
           };
     },
+  },
+  skeleton: {
+    root: ({ props }) => ({
+      class: [
+        "overflow-hidden",
+        "!mb-2",
+        "bg-muted animate-pulse",
+        {
+          "rounded-md": props.shape !== "circle",
+          "rounded-full": props.shape == "circle",
+        },
+      ],
+    }),
   },
 };
 

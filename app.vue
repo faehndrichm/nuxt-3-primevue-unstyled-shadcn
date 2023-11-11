@@ -1,5 +1,17 @@
-<script setup>
+<script setup lang="ts">
 import { useToast } from "primevue/usetoast";
+
+const darkmode = ref(false);
+useHead({
+  htmlAttrs: {
+    class: () => (darkmode.value ? "dark" : ""),
+  },
+  bodyAttrs: {
+    class:
+      "font-body bg-background text-foreground flex items-center justify-center min-h-screen",
+  },
+});
+
 const products = [
   { code: 1, name: "iPhone 13", category: "Electronics", quantity: 100 },
   {
@@ -54,7 +66,7 @@ const valuePass = ref("");
 const textvalue = ref("");
 
 const toast = useToast();
-const showMessage = (severity, summary, detail) => {
+const showMessage = (severity: any, summary: any, detail: any) => {
   toast.add({ severity, summary, detail }); //, life: 3000
 };
 
@@ -62,13 +74,16 @@ const visible = ref(false);
 </script>
 
 <template>
-  <main
-    class="bg-white dark:bg-gray-800 p-10 rounded-xl flex flex-col max-w-3xl"
-  >
-    <h1 class="mb-6 text-4xl text-black dark:text-white font-bold text-center">
+  <main class="p-10 flex flex-col max-w-3xl">
+    <h1 class="mb-6 text-4xl text-foreground font-bold text-center">
       Tailwind CSS + PrimeVue + SHADCNUI
     </h1>
-
+    <section class="my-6">
+      <div>
+        <label class="label">Darkmode</label>
+        <InputSwitch v-model="darkmode"></InputSwitch>
+      </div>
+    </section>
     <h2 class="mt-6 mb-2 text-xl font-medium">Buttons</h2>
     <section class="flex flex-row gap-3">
       <Button label="Primary" rounded></Button>
@@ -167,6 +182,19 @@ const visible = ref(false);
           </p>
         </template>
       </Card>
+      <div class="mt-6">
+        <div class="grid">
+          <Skeleton shape="circle" size="5rem"></Skeleton>
+          <div>
+            <Skeleton class="mb-2"></Skeleton>
+            <Skeleton width="10rem" class="mb-2"></Skeleton>
+            <Skeleton width="5rem" class="mb-2"></Skeleton>
+          </div>
+        </div>
+
+        <Skeleton height="2rem" class="mb-2"></Skeleton>
+        <Skeleton width="10rem" height="4rem"></Skeleton>
+      </div>
     </section>
     <h2 class="mt-6 mb-2 text-xl font-medium">Overlay</h2>
     <section>
@@ -236,9 +264,6 @@ const visible = ref(false);
 </template>
 
 <style>
-body {
-  @apply font-body bg-background text-foreground flex items-center justify-center min-h-screen;
-}
 .form {
   @apply grid gap-4 py-4;
 }

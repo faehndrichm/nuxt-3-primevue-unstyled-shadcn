@@ -13,26 +13,45 @@ export default {
     "./node_modules/nuxt-primevue/**/*.{vue,js,ts,jsx,tsx}",
   ],
   theme: {
+    container: {
+      center: true,
+      padding: "2rem",
+    },
     extend: {
       colors: {
-        background: "#FFFFFF",
-        foreground: "#0f172a",
-        primary: "#0f172a",
-        "primary-foreground": "#F5FAFF",
-        secondary: "#f1f5f9",
-        "secondary-foreground": "#0f172a",
-        accent: "#f1f5f9",
-        "accent-foreground": "#0f172a",
-        destructive: "#FF0000",
-        "destructive-foreground": "#F5FAFF",
-        ring: "#3E4E65",
-        input: "#e2e8f0",
-        muted: "#f1f5f9",
-        "muted-foreground": "#71717a",
-        card: "#ffffff",
-        "card-foreground": "#0f172a",
-        popover: "#ffffff",
-        "card-popover": "#0f172a",
+        border: "hsl(var(--border))",
+        input: "hsl(var(--input))",
+        ring: "hsl(var(--ring))",
+        background: "hsl(var(--background))",
+        foreground: "hsl(var(--foreground))",
+        primary: {
+          DEFAULT: "hsl(var(--primary))",
+          foreground: "hsl(var(--primary-foreground))",
+        },
+        secondary: {
+          DEFAULT: "hsl(var(--secondary))",
+          foreground: "hsl(var(--secondary-foreground))",
+        },
+        destructive: {
+          DEFAULT: "hsl(var(--destructive) / <alpha-value>)",
+          foreground: "hsl(var(--destructive-foreground) / <alpha-value>)",
+        },
+        muted: {
+          DEFAULT: "hsl(var(--muted))",
+          foreground: "hsl(var(--muted-foreground))",
+        },
+        accent: {
+          DEFAULT: "hsl(var(--accent))",
+          foreground: "hsl(var(--accent-foreground))",
+        },
+        popover: {
+          DEFAULT: "hsl(var(--popover))",
+          foreground: "hsl(var(--popover-foreground))",
+        },
+        card: {
+          DEFAULT: "hsl(var(--card))",
+          foreground: "hsl(var(--card-foreground))",
+        },
       },
       fontFamily: {
         body: "Inter",
