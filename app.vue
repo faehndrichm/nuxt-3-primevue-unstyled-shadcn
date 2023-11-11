@@ -56,6 +56,7 @@ const cities = ref([
 ]);
 const slidervalue = ref(0);
 const checked = ref(false);
+const testvalue = ref(false);
 
 const date = ref(new Date());
 const ingredient = ref(null);
@@ -75,11 +76,11 @@ const visible = ref(false);
 
 <template>
   <main class="p-10 flex flex-col max-w-3xl">
-    <h1 class="mb-6 text-4xl text-foreground font-bold text-center">
+    <h1 class="mb-6 text-4xl text-foreground font-sembibold text-center">
       Tailwind CSS + PrimeVue + SHADCNUI
     </h1>
     <section class="my-6">
-      <div>
+      <div class="flex flex-row items-center gap-3">
         <label class="label">Darkmode</label>
         <InputSwitch v-model="darkmode"></InputSwitch>
       </div>
@@ -95,10 +96,7 @@ const visible = ref(false);
     <h2 class="mt-6 mb-2 text-xl font-medium">Input</h2>
     <section class="flex flex-row gap-3 mb-6">
       <InputText type="text" v-model="value" />
-      <div class="flex items-center">
-        <Checkbox name="check1" v-model="checked" :binary="true" />
-        <label for="check1" class="ml-2"> Cheese </label>
-      </div>
+
       <Dropdown
         v-model="selectedCity"
         :options="cities"
@@ -106,6 +104,16 @@ const visible = ref(false);
         placeholder="Select a City"
         class=""
       />
+    </section>
+    <section class="flex flex-row gap-3 mb-6">
+      <div class="flex items-center">
+        <Checkbox name="check1" v-model="checked" :binary="true" />
+        <label for="check1" class="ml-2"> Cheese </label>
+      </div>
+      <div class="flex flex-row items-center gap-3">
+        <label class="label">Test</label>
+        <InputSwitch v-model="testvalue"></InputSwitch>
+      </div>
     </section>
     <section class="flex flex-row gap-6 items-center mb-6">
       <Calendar but v-model="date" showIcon />

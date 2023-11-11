@@ -121,6 +121,30 @@ const MyCustomPreset: PrimeVuePTOptions = {
     }),
     icon: "w-4 h-4",
   },
+  inputswitch: {
+    root: ({ props }) => ({
+      class: [
+        "peer inline-flex h-[24px] w-[44px] shrink-0 cursor-pointer items-center rounded-full border-2 border-transparent transition-colors ",
+        "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background",
+        {
+          "cursor-not-allowed opacity-50 select-none pointer-events-none":
+            props.disabled,
+          "bg-primary hover:bg-primary/80": !props.modelValue,
+          "bg-input hover:bg-input/50": props.modelValue,
+        },
+      ],
+    }),
+    slider: ({ props }) => ({
+      class: [
+        "pointer-events-none block h-5 w-5 rounded-full bg-background shadow-lg ring-0 transition-transform ",
+        "focus:outline-none focus:outline-offset-0 focus:shadow-[0_0_0_0.2rem_rgba(191,219,254,1)] dark:focus:shadow-[0_0_0_0.2rem_rgba(147,197,253,0.5)]",
+        {
+          "translate-x-0": props.modelValue,
+          "translate-x-5": !props.modelValue,
+        },
+      ],
+    }),
+  },
   dropdown: {
     root: ({ props }) => ({
       class: [
