@@ -48,15 +48,22 @@ const checked = ref(false);
 const date = ref(new Date());
 const ingredient = ref(null);
 
+const value = ref("");
+const valueUser = ref("");
+const valuePass = ref("");
+const textvalue = ref("");
+
 const toast = useToast();
 const showMessage = (severity, summary, detail) => {
   toast.add({ severity, summary, detail }); //, life: 3000
 };
+
+const visible = ref(false);
 </script>
 
 <template>
   <main
-    class="font-body bg-white dark:bg-gray-800 p-10 rounded-xl flex flex-col max-w-3xl"
+    class="bg-white dark:bg-gray-800 p-10 rounded-xl flex flex-col max-w-3xl"
   >
     <h1 class="mb-6 text-4xl text-black dark:text-white font-bold text-center">
       Tailwind CSS + PrimeVue + SHADCNUI
@@ -128,7 +135,7 @@ const showMessage = (severity, summary, detail) => {
           <label for="ingredient4" class="ml-2">Onion</label>
         </div>
       </div>
-      <Textarea v-model="value" rows="5" cols="30"></Textarea>
+      <Textarea v-model="textvalue" rows="5" cols="30"></Textarea>
     </section>
 
     <h2 class="mt-6 mb-2 text-xl font-medium">Datatable</h2>
@@ -150,7 +157,7 @@ const showMessage = (severity, summary, detail) => {
     <section>
       <Card>
         <template #title> Simple Card </template>
-        <template #subtitle>This is a simlple Card</template>
+        <template #subtitle>This is a simple Card</template>
         <template #content>
           <p class="m-0">
             Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore
@@ -187,12 +194,61 @@ const showMessage = (severity, summary, detail) => {
       <Message severity="info"> Info Message Content </Message>
       <Message severity="warn"> Warning Message Content </Message>
       <Message severity="error"> Error Message Content </Message>
+      <div class="mb-3"></div>
+      <Button @click="visible = true" label="Show Dialog"></Button>
+      <Dialog
+        v-model:visible="visible"
+        modal
+        header="Header"
+        :breakpoints="{ '1199px': '75vw', '575px': '90vw' }"
+      >
+        <template #header>
+          <div class="flex flex-col space-y-1.5 text-center sm:text-left">
+            <span class="text-lg font-semibold leading-none tracking-tight"
+              >Edit profile</span
+            >
+            <span class="text-sm text-muted-foreground">
+              Make changes to your profile here. Click save when you're done.
+            </span>
+          </div>
+        </template>
+        <form class="form">
+          <div class="form-field">
+            <label for="username">Username</label>
+            <InputText
+              autofocus
+              class="col-span-3"
+              type="text"
+              v-model="valueUser"
+            />
+          </div>
+          <div class="form-field">
+            <label for="password">Password</label>
+            <InputText class="col-span-3" type="text" v-model="valuePass" />
+          </div>
+        </form>
+        <template #footer>
+          <Button rounded label="Save changes" @click="visible = false" />
+        </template>
+      </Dialog>
     </section>
   </main>
 </template>
 
-<style lang="postcss">
+<style>
 body {
-  @apply bg-background text-foreground flex items-center justify-center min-h-screen p-10;
+  @apply font-body bg-background text-foreground flex items-center justify-center min-h-screen;
+}
+.form {
+  @apply grid gap-4 py-4;
+}
+.form-field {
+  @apply grid grid-cols-4 items-center gap-4;
+}
+.label {
+  @apply text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 text-right;
+}
+.form-field > label {
+  @apply label;
 }
 </style>
