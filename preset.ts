@@ -807,18 +807,19 @@ const MyCustomPreset: PrimeVuePTOptions = {
   card: {
     root: {
       class: [
-        "rounded-lg border bg-card text-card-foreground shadow-sm", // Background, text color, box shadow, and border radius.
+        "p-5 rounded-lg border bg-card text-card-foreground shadow-sm", // Background, text color, box shadow, and border radius.
       ],
     },
-    body: ["p-5"], // Padding.
+    body: [""], // Padding.
     title: ["text-2xl font-bold mb-2"], // Font size, font weight, and margin bottom.
+    header: [""],
     subtitle: {
       class: [
         "font-normal mb-2 text-muted-foreground", // Font weight, margin bottom, and text color.
       ],
     },
     content: ["py-5"], // Vertical padding.
-    footer: ["pt-5"], // Top padding.
+    footer: [""], // Top padding.
   },
   toast: {
     root: {

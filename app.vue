@@ -358,9 +358,7 @@ onMounted(() => {
     <section>
       <Card>
         <template #header>
-          <h3
-            class="mx-6 mt-6 text-base font-semibold leading-none tracking-tight"
-          >
+          <h3 class="text-base font-semibold leading-none tracking-tight">
             Overview
           </h3>
         </template>
@@ -373,6 +371,53 @@ onMounted(() => {
           />
         </template>
       </Card>
+      <div class="grid grid-cols-3 gap-6 mt-6">
+        <Card>
+          <template #header>
+            <h3 class="text-base font-semibold leading-none tracking-tight">
+              Total Revenue
+            </h3>
+          </template>
+          <template #content>
+            <div class="grid">
+              <div class="text-2xl font-bold">$45,231.89</div>
+              <div class="text-xs text-muted-foreground">
+                +20.1% from last month
+              </div>
+            </div>
+          </template>
+        </Card>
+        <Card>
+          <template #header>
+            <h3 class="text-base font-semibold leading-none tracking-tight">
+              Subscriptions
+            </h3>
+          </template>
+          <template #content>
+            <div class="grid">
+              <div class="text-2xl font-bold">+2350</div>
+              <div class="text-xs text-muted-foreground">
+                +180.1% from last month
+              </div>
+            </div>
+          </template>
+        </Card>
+        <Card>
+          <template #header>
+            <h3 class="text-base font-semibold leading-none tracking-tight">
+              Active Now
+            </h3>
+          </template>
+          <template #content>
+            <div class="grid">
+              <div class="text-2xl font-bold">+573</div>
+              <div class="text-xs text-muted-foreground">
+                +201 since last hour
+              </div>
+            </div>
+          </template>
+        </Card>
+      </div>
     </section>
   </main>
 </template>
