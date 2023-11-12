@@ -109,8 +109,6 @@ const setChartOptions = () => {
   const textColorSecondary = `hsl(${documentStyle.getPropertyValue(
     "--muted-foreground"
   )})`;
-  console.log(textColor);
-  console.log(textColorSecondary);
   return {
     borderRadius: 4,
     maintainAspectRatio: false,
@@ -161,16 +159,21 @@ onMounted(() => {
 </script>
 
 <template>
-  <main class="p-10 flex flex-col max-w-3xl">
-    <h1 class="mb-6 text-4xl text-foreground font-sembibold text-center">
+  <header
+    class="z-[200] bg-background/80 backdrop-blur-md left-0 top-0 w-screen py-3 px-6 fixed flex flex-row justify-between"
+  >
+    <div class="w-48"></div>
+    <h1
+      class="mb-6 text-3xl font-bold leading-tight tracking-tighter text-center"
+    >
       Tailwind CSS + PrimeVue + SHADCNUI
     </h1>
-    <section class="my-6">
-      <div class="flex flex-row items-center gap-3">
-        <label class="label">Darkmode</label>
-        <InputSwitch v-model="darkmode"></InputSwitch>
-      </div>
-    </section>
+    <div class="flex flex-row items-center gap-3">
+      <label class="label">Darkmode</label>
+      <InputSwitch v-model="darkmode"></InputSwitch>
+    </div>
+  </header>
+  <main class="mt-12 p-10 flex flex-col max-w-3xl">
     <h2 class="mt-6 mb-2 text-xl font-medium">Buttons</h2>
     <section class="flex flex-row gap-3">
       <Button label="Primary" rounded></Button>
@@ -276,6 +279,42 @@ onMounted(() => {
           </p>
         </template>
       </Card>
+      <div class="my-3"></div>
+      <TabView :scrollable="true">
+        <TabPanel header="Header I">
+          <p class="m-0">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
+            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+            aliquip ex ea commodo consequat. Duis aute irure dolor in
+            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+            pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+            culpa qui officia deserunt mollit anim id est laborum.
+          </p>
+        </TabPanel>
+        <TabPanel header="Header II">
+          <p class="m-0">
+            Sed ut perspiciatis unde omnis iste natus error sit voluptatem
+            accusantium doloremque laudantium, totam rem aperiam, eaque ipsa
+            quae ab illo inventore veritatis et quasi architecto beatae vitae
+            dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit
+            aspernatur aut odit aut fugit, sed quia consequuntur magni dolores
+            eos qui ratione voluptatem sequi nesciunt. Consectetur, adipisci
+            velit, sed quia non numquam eius modi.
+          </p>
+        </TabPanel>
+        <TabPanel header="Header III">
+          <p class="m-0">
+            At vero eos et accusamus et iusto odio dignissimos ducimus qui
+            blanditiis praesentium voluptatum deleniti atque corrupti quos
+            dolores et quas molestias excepturi sint occaecati cupiditate non
+            provident, similique sunt in culpa qui officia deserunt mollitia
+            animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis
+            est et expedita distinctio. Nam libero tempore, cum soluta nobis est
+            eligendi optio cumque nihil impedit quo minus.
+          </p>
+        </TabPanel>
+      </TabView>
       <div class="mt-6">
         <div class="grid">
           <Skeleton shape="circle" size="5rem"></Skeleton>

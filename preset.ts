@@ -1014,6 +1014,76 @@ const MyCustomPreset: PrimeVuePTOptions = {
       ],
     }),
   },
+  tabview: {
+    navContainer: ({ props }) => ({
+      class: [
+        "relative", // Relative positioning.
+        { "overflow-hidden": props.scrollable }, // Overflow condition.
+      ],
+    }),
+    navContent: {
+      class: [
+        "overflow-y-hidden overscroll-contain overscroll-auto scroll-smooth [&::-webkit-scrollbar]:hidden", // Overflow and scrollbar styles.
+      ],
+    },
+    previousButton: {
+      class: [
+        "h-full flex items-center justify-center !absolute top-0 z-20",
+        "left-0",
+        "bg-white text-blue-500 w-12 shadow-md rounded-none",
+        "dark:bg-gray-900 dark:border-blue-900/40 dark:text-white/80 ]",
+      ], // Flex and absolute positioning styles.
+    },
+    nextButton: {
+      class: [
+        "h-full flex items-center justify-center !absolute top-0 z-20",
+        "right-0",
+        "bg-white text-blue-500 w-12 shadow-md rounded-none",
+        "dark:bg-gray-900 dark:border-blue-900/40 dark:text-white/80 ",
+      ], // Flex and absolute positioning styles.
+    },
+    nav: {
+      class: [
+        "[&>li:not(.tab-visible)]:hidden", //TODO: review, there is a hidden tab-element which should be hidden?
+        "flex h-10 items-stretch justify-center rounded-md bg-muted p-1 text-muted-foreground",
+      ], // Flex, list, margin, padding, and border styles.
+    },
+    tabpanel: {
+      header: ({ props }: { props: any }) => ({
+        class: [
+          "tab-visible",
+          "flex-1  whitespace-nowrap ring-offset-background transition-all",
+          "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
+          "cursor-pointer",
+          {
+            "cursor-default pointer-events-none select-none select-none opacity-50":
+              props?.disabled,
+          },
+        ], // Margin and condition-based styles.
+      }),
+      headerAction: ({ parent, context }: { parent: any; context: any }) => ({
+        class: [
+          "h-full flex items-center justify-center rounded-sm px-3 py-1.5 text-sm font-medium",
+          //"items-center cursor-pointer flex overflow-hidden relative select-none text-decoration-none select-none", // Flex and overflow styles.
+          "transition-all duration-200", // Transition duration style.
+          "", // Focus styles.
+          {
+            "": parent.state.d_activeIndex !== context.index, // Condition-based hover styles.
+            "bg-background text-foreground shadow-sm":
+              parent.state.d_activeIndex === context.index, // Condition-based active styles.
+          },
+        ],
+      }),
+      headerTitle: {
+        class: ["leading-none whitespace-nowrap"], // Leading and whitespace styles.
+      },
+      content: {
+        class: [
+          "mt-2 ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
+        ],
+      },
+    },
+  },
 };
 
 //export default MyCustomPreset;

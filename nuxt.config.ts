@@ -27,6 +27,8 @@ export default defineNuxtConfig({
         "RadioButton",
         "Slider",
         "Skeleton",
+        "TabView",
+        "TabPanel",
         "Textarea",
         "Toast",
       ],
